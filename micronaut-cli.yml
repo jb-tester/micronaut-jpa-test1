@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.mytests.micronaut
+testFramework: junit
+sourceLanguage: java
+buildTool: maven
+features: [ annotation-api, app-name, data, data-jpa, docker, http-client, java, java-application, jdbc-hikari, junit, logback, maven, mysql, netty-server, readme, shade, testcontainers, yaml ]

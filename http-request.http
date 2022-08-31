@@ -1,0 +1,50 @@
+###
+GET http://localhost:8080/address/all
+
+<> 2022-08-30T153215.200.json
+<> 2022-08-30T152420.200.json
+<> 2022-08-30T152111.500.json
+<> 2022-08-30T144155.500.json
+<> 2022-08-30T144100.500.json
+
+###
+GET http://localhost:8080/address/byId/100
+
+<> 2022-08-30T153434.200.json
+<> 2022-08-30T153238.500.json
+
+###
+GET http://localhost:8080/cats/join
+
+<> 2020-10-08T084242.200.json
+<> 2020-10-08T081552.200.json
+<> 2020-10-08T080826.200.json
+
+###
+GET http://localhost:8080/cats/graph
+
+<> 2020-10-08T085911.500.json
+<> 2020-10-08T085612.500.json
+<> 2020-10-08T085214.500.json
+<> 2020-10-08T084936.500.json
+<> 2020-10-08T084430.500.json
+<> 2020-10-08T084045.200.json
+<> 2020-10-08T083500.500.json
+<> 2020-10-08T083159.500.json
+
+###
+GET http://localhost:8080/cats/byownername/irina
+
+<> 2020-10-08T092749.200.json
+
+###
+GET http://localhost:8080/cats/ownerbycatname/barsik/
+
+<> 2020-10-08T092910.200.json
+
+###
+GET http://localhost:8080/cats/byownercity/Prague
+
+<> 2020-10-08T092934.200.json
+
+###
