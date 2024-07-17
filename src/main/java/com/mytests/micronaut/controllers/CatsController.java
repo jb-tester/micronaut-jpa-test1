@@ -1,7 +1,7 @@
 package com.mytests.micronaut.controllers;
 
 import com.mytests.micronaut.data.Cat;
-import com.mytests.micronaut.data.Owner;
+import com.mytests.micronaut.data.CatOwner;
 import com.mytests.micronaut.repositories.CatsRepository;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
@@ -11,18 +11,15 @@ import jakarta.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * *
- * <p>Created by irina on 05.10.2020.</p>
- * <p>Project: micronaut-jpa-test1</p>
- * *
- */
+
 @Controller("/cats")
 public class CatsController {
 
     @Inject
     CatsRepository repo;
-    
+
+
+
     @Get("/byownercity/{city}")
     public List<String> getbyownercity(@PathVariable("city") String city) {
         List<Cat> cats = repo.findByOwnerAddressCity(city);
@@ -40,8 +37,8 @@ public class CatsController {
     @Get("/ownerbycatname/{name}/")
     public List<String> getownerbycatname(@PathVariable("name") String name) {
         List<String> rez = new ArrayList<>();
-        List<Owner> o = repo.findOwnerByCatName(name);
-        for (Owner owner : o) {
+        List<CatOwner> o = repo.findOwnerByCatName(name);
+        for (CatOwner owner : o) {
             rez.add(o.toString());
         }
         return rez;
@@ -66,4 +63,6 @@ public class CatsController {
         }
         return rez;
     }
+
+
 }

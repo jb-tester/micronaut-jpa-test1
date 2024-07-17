@@ -1,43 +1,42 @@
 package com.mytests.micronaut.data;
 
-import javax.persistence.*;
-import java.util.Objects;
+import io.micronaut.serde.annotation.Serdeable;
+import jakarta.persistence.*;
 
-/**
- * *******************************
- * Created by Irina.Petrovskaya on 10/4/2017.
- * Project: jpa2relations
- * *******************************
- */
 @Entity
-@Table(name = "address", schema = "jbtests")
+@Table(name = "address")
+@Serdeable
 public class Address {
-    private int addressId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "address_id", nullable = false)
+    private Integer id;
+
+    @jakarta.validation.constraints.Size(max = 15)
+    @Column(name = "city", length = 15)
     private String city;
+
+    @jakarta.validation.constraints.Size(max = 15)
+    @Column(name = "street", length = 15)
     private String street;
+
+    @Column(name = "building")
     private Integer building;
+
+    @Column(name = "flat")
     private Integer flat;
+
+    @Column(name = "rooms_amount")
     private Integer roomsAmount;
 
-    public Address() {
+    public Integer getId() {
+        return id;
     }
 
-    public Address(int addressId) {
-        this.addressId = addressId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    @Id
-    @Column(name = "address_id")
-    public int getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(int addressId) {
-        this.addressId = addressId;
-    }
-
-    @Basic
-    @Column(name = "city")
     public String getCity() {
         return city;
     }
@@ -46,8 +45,6 @@ public class Address {
         this.city = city;
     }
 
-    @Basic
-    @Column(name = "street")
     public String getStreet() {
         return street;
     }
@@ -56,8 +53,6 @@ public class Address {
         this.street = street;
     }
 
-    @Basic
-    @Column(name = "building")
     public Integer getBuilding() {
         return building;
     }
@@ -66,8 +61,6 @@ public class Address {
         this.building = building;
     }
 
-    @Basic
-    @Column(name = "flat")
     public Integer getFlat() {
         return flat;
     }
@@ -76,8 +69,6 @@ public class Address {
         this.flat = flat;
     }
 
-    @Basic
-    @Column(name = "rooms_amount")
     public Integer getRoomsAmount() {
         return roomsAmount;
     }
@@ -86,33 +77,4 @@ public class Address {
         this.roomsAmount = roomsAmount;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Address that = (Address) o;
-        return addressId == that.addressId &&
-                Objects.equals(city, that.city) &&
-                Objects.equals(street, that.street) &&
-                Objects.equals(building, that.building) &&
-                Objects.equals(flat, that.flat) &&
-                Objects.equals(roomsAmount, that.roomsAmount);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(addressId, city, street, building, flat, roomsAmount);
-    }
-
-    @Override
-    public String toString() {
-        return
-                " city='" + city + '\'' +
-                ", street='" + street + '\'' +
-                ", building=" + building +
-                ", flat=" + flat +
-                ", roomsAmount=" + roomsAmount +
-                ' ';
-    }
 }

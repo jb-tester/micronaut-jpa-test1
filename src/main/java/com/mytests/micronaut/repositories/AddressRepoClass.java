@@ -9,6 +9,7 @@ import java.util.Optional;
 @Repository
 public abstract class AddressRepoClass implements CrudRepository<Address,Integer> {
 
+    // this issue is addressed in the request IDEA-???? - already fixed
     public Address findByIdOrCreate(Integer id){
         Optional<Address> optionalAddress = findById(id);
         Address m;
@@ -18,4 +19,5 @@ public abstract class AddressRepoClass implements CrudRepository<Address,Integer
         } else {m = optionalAddress.get();}
        return m;
     }
+
 }

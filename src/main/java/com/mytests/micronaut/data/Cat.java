@@ -1,35 +1,42 @@
 package com.mytests.micronaut.data;
 
-import javax.persistence.*;
-import java.util.Objects;
+import io.micronaut.serde.annotation.Serdeable;
+import jakarta.persistence.*;
 
-/**
- * *******************************
- * Created by Irina.Petrovskaya on 10/4/2017.
- * Project: jpa2relations
- * *******************************
- */
 @Entity
-@Table(name = "cats", schema = "jbtests")
+@Table(name = "cats")
+@Serdeable
 public class Cat {
-    private int catId;
-    private String catName;
-    private String breed;
-    private String color;
-    private Owner owner;
-
     @Id
-    @Column(name = "cat_id")
-    public int getCatId() {
-        return catId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cat_id", nullable = false)
+    private Integer id;
+
+    @jakarta.validation.constraints.Size(max = 15)
+    @Column(name = "cat_name", length = 15)
+    private String catName;
+
+    @jakarta.validation.constraints.Size(max = 15)
+    @Column(name = "breed", length = 15)
+    private String breed;
+
+    @jakarta.validation.constraints.Size(max = 15)
+    @Column(name = "color", length = 15)
+    private String color;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner")
+    //@JoinColumn(name = "owner", referencedColumnName = "owner_id")
+    private CatOwner owner;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setCatId(int catId) {
-        this.catId = catId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    @Basic
-    @Column(name = "cat_name")
     public String getCatName() {
         return catName;
     }
@@ -38,8 +45,6 @@ public class Cat {
         this.catName = catName;
     }
 
-    @Basic
-    @Column(name = "breed")
     public String getBreed() {
         return breed;
     }
@@ -48,8 +53,6 @@ public class Cat {
         this.breed = breed;
     }
 
-    @Basic
-    @Column(name = "color")
     public String getColor() {
         return color;
     }
@@ -58,39 +61,12 @@ public class Cat {
         this.color = color;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cat that = (Cat) o;
-        return catId == that.catId &&
-                Objects.equals(catName, that.catName) &&
-                Objects.equals(breed, that.breed) &&
-                Objects.equals(color, that.color);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(catId, catName, breed, color);
-    }
-
-    @ManyToOne//(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner", referencedColumnName = "owner_id")
-    public Owner getOwner() {
+    public CatOwner getOwner() {
         return owner;
     }
 
-    public void setOwner(Owner catOwnersByOwner) {
-        this.owner = catOwnersByOwner;
+    public void setOwner(CatOwner owner) {
+        this.owner = owner;
     }
 
-    @Override
-    public String toString() {
-        return
-                "catName='" + catName + '\'' +
-                ", breed='" + breed + '\'' +
-                ", color='" + color + '\'' +
-                ", owner= '" + owner.toString();
-    }
 }

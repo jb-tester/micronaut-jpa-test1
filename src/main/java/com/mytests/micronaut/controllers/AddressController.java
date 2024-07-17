@@ -9,12 +9,7 @@ import jakarta.inject.Inject;
 
 import java.util.List;
 
-/**
- * *
- * <p>Created by irina on 8/30/2022.</p>
- * <p>Project: micronaut-jpa-test1</p>
- * *
- */
+
 @Controller("/address")
 public class AddressController {
     @Inject
