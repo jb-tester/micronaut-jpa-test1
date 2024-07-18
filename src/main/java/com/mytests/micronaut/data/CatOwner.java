@@ -1,5 +1,6 @@
 package com.mytests.micronaut.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.persistence.*;
 
@@ -23,9 +24,10 @@ public class CatOwner {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "address")
     private Address address;
-/*
+
+    @JsonIgnore
     @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
-    private Set<com.mytests.micronaut.data.Cat> cats = new LinkedHashSet<>();*/
+    private Set<com.mytests.micronaut.data.Cat> cats = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -51,6 +53,11 @@ public class CatOwner {
         this.address = address;
     }
 
+    public Set<Cat> getCats() {
+        return cats;
+    }
 
-
+    public void setCats(Set<Cat> cats) {
+        this.cats = cats;
+    }
 }

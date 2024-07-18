@@ -77,4 +77,6 @@ public class Address {
         this.roomsAmount = roomsAmount;
     }
 
+    public Address() {
+    }
 }
